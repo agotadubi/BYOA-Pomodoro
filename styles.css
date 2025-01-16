@@ -1,0 +1,260 @@
+@import url('https://fonts.cdnfonts.com/css/death-star');
+
+:root {
+    --imperial-red: #FF0000;
+    --imperial-gray: #2d2d2d;
+    --hologram-blue: #4cc6ff;
+    --rebel-orange: #ff5e1a;
+    --rebel-yellow: #ffe81f;
+}
+
+body {
+    font-family: 'Death Star', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #000000;
+    background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    color: var(--hologram-blue);
+    overflow: hidden;
+}
+
+.empire-logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Galactic_Empire_emblem.svg/1200px-Galactic_Empire_emblem.svg.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px var(--hologram-blue),
+                inset 0 0 20px var(--hologram-blue);
+    border: 2px solid var(--hologram-blue);
+    z-index: 2;
+}
+
+.theme-toggle {
+    margin-bottom: 1rem;
+}
+
+.theme-toggle button {
+    font-family: 'Death Star', sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    background: transparent;
+    border: 1px solid var(--hologram-blue);
+    color: var(--hologram-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle button.active {
+    background: var(--hologram-blue);
+    color: black;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--hologram-blue);
+}
+
+.timer {
+    position: relative;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.timer-display {
+    font-size: 5rem;
+    font-weight: bold;
+    font-family: 'Death Star', monospace;
+    color: var(--hologram-blue);
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px var(--hologram-blue);
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.timer-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.line {
+    position: absolute;
+    background: var(--hologram-blue);
+    opacity: 0.5;
+}
+
+.line.left {
+    left: 0;
+    top: 50%;
+    width: 20%;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.line.right {
+    right: 0;
+    top: 50%;
+    width: 20%;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.controls button, .mode button {
+    font-family: 'Death Star', sans-serif;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    border: 2px solid var(--hologram-blue);
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--hologram-blue);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.controls button:hover, .mode button:hover {
+    background-color: var(--hologram-blue);
+    color: black;
+    box-shadow: 0 0 15px var(--hologram-blue);
+}
+
+.mode button.active {
+    background-color: var(--hologram-blue);
+    color: black;
+    box-shadow: 0 0 15px var(--hologram-blue);
+}
+
+#start-pause {
+    border-color: var(--imperial-red);
+    color: var(--imperial-red);
+}
+
+#start-pause:hover {
+    background-color: var(--imperial-red);
+    color: black;
+    box-shadow: 0 0 15px var(--imperial-red);
+}
+
+/* Scanning effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--hologram-blue);
+    opacity: 0.5;
+    animation: scan 4s linear infinite;
+    z-index: -1;
+}
+
+@keyframes scan {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+.corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--hologram-blue);
+    opacity: 0.7;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+/* Rebel theme styles */
+body.rebel-theme {
+    --hologram-blue: var(--rebel-orange);
+}
+
+body.rebel-theme .empire-logo {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Rebel_Alliance_logo.svg/1200px-Rebel_Alliance_logo.svg.png');
+}
+
+/* Update the pause button styling to work with combined button */
+#start-pause.paused {
+    border-color: var(--imperial-red);
+    color: var(--imperial-red);
+}
+
+#start-pause.paused:hover {
+    background-color: var(--imperial-red);
+    color: black;
+    box-shadow: 0 0 15px var(--imperial-red);
+}
+
+#test-sound {
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+} 
