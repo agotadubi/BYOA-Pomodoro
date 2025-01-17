@@ -1,7 +1,11 @@
 class PomodoroTimer {
     constructor() {
-        this.workTime = 25 * 60;
-        this.breakTime = 5 * 60;
+        // Default times in minutes
+        this.defaultWorkTime = 25;
+        this.defaultBreakTime = 5;
+        
+        this.workTime = this.defaultWorkTime * 60;
+        this.breakTime = this.defaultBreakTime * 60;
         this.currentTime = this.workTime;
         this.isRunning = false;
         this.isWorkMode = true;
@@ -18,15 +22,31 @@ class PomodoroTimer {
         this.empireThemeButton = document.getElementById('empire-theme');
         this.rebelThemeButton = document.getElementById('rebel-theme');
 
-        // Sound effects
+        // Replace the time settings HTML with simpler version
+        this.timeSettingsHTML = `
+            <div class="time-settings">
+                <input type="number" id="work-time" min="1" max="60" value="${this.defaultWorkTime}">
+                <span class="separator">/</span>
+                <input type="number" id="break-time" min="1" max="60" value="${this.defaultBreakTime}">
+            </div>
+        `;
+        
+        // Add to body instead of inside container
+        document.body.insertAdjacentHTML('beforeend', this.timeSettingsHTML);
+        
+        // Add event listeners for automatic saving
+        document.getElementById('work-time').addEventListener('input', () => this.saveNewTimes());
+        document.getElementById('break-time').addEventListener('input', () => this.saveNewTimes());
+
+        // Sound effects - update paths to local files
         this.sounds = {
             empire: {
-                start: 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3',
-                complete: 'https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3'
+                start: 'sounds/empire-start.mp3',
+                complete: 'sounds/empire-complete.mp3'
             },
             rebel: {
-                start: 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3',
-                complete: 'https://assets.mixkit.co/active_storage/sfx/2572/2572-preview.mp3'
+                start: 'sounds/rebel-start.mp3',
+                complete: 'sounds/rebel-complete.mp3'
             }
         };
 
@@ -52,6 +72,17 @@ class PomodoroTimer {
         document.getElementById('test-sound').addEventListener('click', () => this.playSound('start'));
 
         this.updateDisplay();
+
+        // Add space bar control
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !e.repeat && 
+                // Prevent triggering when typing in time settings
+                document.activeElement !== document.getElementById('work-time') &&
+                document.activeElement !== document.getElementById('break-time')) {
+                e.preventDefault(); // Prevent page scrolling
+                this.toggleTimer();
+            }
+        });
     }
 
     setTheme(theme) {
@@ -141,6 +172,19 @@ class PomodoroTimer {
         this.workButton.classList.remove('active');
         this.breakButton.classList.add('active');
         this.reset();
+    }
+
+    saveNewTimes() {
+        const newWorkTime = parseInt(document.getElementById('work-time').value);
+        const newBreakTime = parseInt(document.getElementById('break-time').value);
+        
+        if (newWorkTime > 0 && newBreakTime > 0) {
+            this.workTime = newWorkTime * 60;
+            this.breakTime = newBreakTime * 60;
+            if (!this.isRunning) {
+                this.reset();
+            }
+        }
     }
 }
 

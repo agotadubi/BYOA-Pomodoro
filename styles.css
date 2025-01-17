@@ -257,4 +257,52 @@ body.rebel-theme .empire-logo {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+.time-settings {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border: 1px solid var(--hologram-blue);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--hologram-blue);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.time-settings input {
+    background: transparent;
+    border: 1px solid var(--hologram-blue);
+    color: var(--hologram-blue);
+    padding: 5px;
+    width: 40px;
+    border-radius: 3px;
+    font-family: 'Death Star', sans-serif;
+    text-align: center;
+}
+
+.time-settings .separator {
+    color: var(--hologram-blue);
+    font-family: 'Death Star', sans-serif;
+}
+
+#save-times {
+    font-family: 'Death Star', sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--hologram-blue);
+    color: var(--hologram-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#save-times:hover {
+    background-color: var(--hologram-blue);
+    color: black;
+    box-shadow: 0 0 15px var(--hologram-blue);
 } 
