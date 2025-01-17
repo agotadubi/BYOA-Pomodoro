@@ -159,6 +159,19 @@ h1 {
     background-color: var(--hologram-blue);
     color: black;
     box-shadow: 0 0 15px var(--hologram-blue);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px var(--hologram-blue);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--hologram-blue);
+    }
+    100% {
+        box-shadow: 0 0 15px var(--hologram-blue);
+    }
 }
 
 #start-pause {

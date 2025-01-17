@@ -83,6 +83,8 @@ class PomodoroTimer {
                 this.toggleTimer();
             }
         });
+
+        this.timerTitle = document.querySelector('h1');
     }
 
     setTheme(theme) {
@@ -90,6 +92,12 @@ class PomodoroTimer {
         document.body.classList.toggle('rebel-theme', !this.isEmpireTheme);
         this.empireThemeButton.classList.toggle('active', this.isEmpireTheme);
         this.rebelThemeButton.classList.toggle('active', !this.isEmpireTheme);
+        
+        // Update title based on theme
+        const icon = this.isEmpireTheme ? 
+            '<i class="fab fa-galactic-empire"></i> Imperial Timer' : 
+            '<i class="fab fa-rebel"></i> Rebel Timer';
+        this.timerTitle.innerHTML = icon;
     }
 
     playSound(type) {
@@ -139,9 +147,16 @@ class PomodoroTimer {
                 if (this.currentTime === 0) {
                     this.playSound('complete');
                     this.pause();
-                    this.reset();
-                    this.startPauseButton.textContent = 'Start Mission';
-                    this.startPauseButton.classList.remove('paused');
+                    
+                    // Auto-switch to rest mode if we're in work mode
+                    if (this.isWorkMode) {
+                        this.setBreakMode();
+                        this.start();  // Automatically start the rest timer
+                    } else {
+                        this.setWorkMode();  // Switch back to work mode but don't auto-start
+                        this.startPauseButton.textContent = 'Start Mission';
+                        this.startPauseButton.classList.remove('paused');
+                    }
                 }
             }, 1000);
         }

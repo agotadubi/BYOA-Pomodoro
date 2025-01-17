@@ -1,26 +1,17 @@
 # Project TODO List
 
 ## High Priority
-- [ ] Add sound effects
-  - [ ] Create `sounds` directory
-  - [ ] Add empire-start.mp3
-  - [ ] Add empire-complete.mp3
-  - [ ] Add rebel-start.mp3
-  - [ ] Add rebel-complete.mp3
-
-## Future Enhancements
-- [ ] Add notification support
-- [ ] Add task tracking
-- [ ] Save user preferences locally
-- [ ] Add mission count tracking
-- [ ] Add statistics view
-- [ ] Add custom theme options
-- [ ] Add mobile app support
+- [x] Add sound effects
+  - [x] Create `sounds` directory
+  - [x] Add empire-start.mp3
+  - [x] Add empire-complete.mp3
+  - [x] Add rebel-start.mp3
+  - [x] Add rebel-complete.mp3
 
 ## Bug Fixes
-- [ ] Test sound playback across different browsers
-- [ ] Ensure timer accuracy over long periods
-- [ ] Test theme switching edge cases
+- [ ] Should say "Rebel Timer" when the theme is rebel
+- [ ] Auto-switch to Rest mode when Mission completes
+- [ ] Highlight Rest button when in Rest mode
 
 ## Documentation
 - [ ] Add JSDoc comments
